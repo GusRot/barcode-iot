@@ -1,0 +1,5 @@
+[
+  { "uid": "EMP001", "name": "Alice", "level": "admin", "doors": ["D1", "D2", "D3"] },
+  { "uid": "EMP002", "name": "Bob", "level": "staff", "doors": ["D1", "D3"] },
+  { "uid": "EMP003", "name": "Charlie", "level": "visitor", "doors": ["D1"] }
+]
