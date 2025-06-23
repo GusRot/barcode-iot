@@ -46,6 +46,7 @@ export interface AsyncData extends SubmitScan {
   total: number
 }
 
+// New types for door access system
 export interface Door {
   id: string
   name: string

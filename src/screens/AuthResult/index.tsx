@@ -48,8 +48,8 @@ export default function AuthResult({ route, navigation }: Props) {
     navigation.navigate("SelectDoor")
   }
 
-  function handleContinue() {
-    navigation.navigate("SelectDoor")
+  function handleCheckHistory() {
+    navigation.navigate("AccessLog")
   }
 
   const title = ok ? "Access Granted" : "Access Denied"
@@ -63,7 +63,7 @@ export default function AuthResult({ route, navigation }: Props) {
       </ContentContainer>
       <ScrollContainer>
         {ok && showSuccessMessage ? (
-          <SuccessMessage doorName={doorName} userName={user?.name || "User"} onContinue={handleContinue} />
+          <SuccessMessage doorName={doorName} userName={user?.name || "User"} onCheckHistory={handleCheckHistory} />
         ) : (
           <ResultCard success={ok} user={user} reason={reason} doorName={doorName} />
         )}
