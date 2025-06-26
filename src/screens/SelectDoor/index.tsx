@@ -21,22 +21,18 @@ export default function SelectDoor({ navigation }: Props) {
   const [modal, setModal] = useState(false)
 
   useEffect(() => {
-    console.log("SelectDoor mounted, loading doors...")
     loadDoors()
   }, [])
 
   useFocusEffect(
     useCallback(() => {
-      console.log("SelectDoor focused, reloading doors...")
       loadDoors()
     }, []),
   )
 
   async function loadDoors() {
     try {
-      console.log("Loading doors...")
       const doorList = await getDoors()
-      console.log("Doors loaded:", doorList)
       setDoors(doorList)
     } catch (error) {
       console.error("Error loading doors:", error)
@@ -50,7 +46,6 @@ export default function SelectDoor({ navigation }: Props) {
       return
     }
 
-    console.log("Navigating to ScanQR with door:", selectedDoor)
     navigation.navigate("ScanQR", {
       doorId: selectedDoor.id,
       doorName: selectedDoor.name,
@@ -72,8 +67,6 @@ export default function SelectDoor({ navigation }: Props) {
   const handleDismissKeyboard = () => {
     Keyboard.dismiss()
   }
-
-  console.log("SelectDoor render - doors:", doors.length, "selectedDoor:", selectedDoor)
 
   return (
     <Container>

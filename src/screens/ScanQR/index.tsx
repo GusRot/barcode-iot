@@ -12,6 +12,7 @@ import ErrorScreen from "../../components/ErrorScreen"
 import Splash from "../../components/Splash"
 import { checkAccess, appendLog } from "../../services/access"
 import type { LogEntry } from "../../types"
+import mqttService from "../../services/mqttService"
 
 type Props = NativeStackScreenProps<RootStackParamList, "ScanQR">
 
@@ -30,11 +31,8 @@ export default function ScanQR({ route, navigation }: Props) {
 
     try {
       const uid = data.trim()
-      console.log("Scanned UID:", uid)
-
       const accessResult = await checkAccess(uid, doorId)
 
-      // Create log entry
       const logEntry: LogEntry = {
         ts: Date.now(),
         uid,
@@ -46,7 +44,13 @@ export default function ScanQR({ route, navigation }: Props) {
 
       await appendLog(logEntry)
 
-      // Navigate to AuthResult with the result
+      // Send to MQTT broker
+      try {
+        await mqttService.sendDoorLog(logEntry)
+      } catch (error) {
+        console.error("Failed to send door log to MQTT:", error)
+      }
+
       navigation.navigate("AuthResult", {
         doorId,
         doorName,
@@ -73,12 +77,16 @@ export default function ScanQR({ route, navigation }: Props) {
     Keyboard.dismiss()
   }
 
+  async function handleEnablePermission(): Promise<void> {
+    await requestPermission()
+  }
+
   if (!permission) {
     return <Splash appIsReady={false} />
   }
 
   if (!permission.granted && userHandleCam) {
-    return <ErrorScreen enablePermission={requestPermission} title="Camera access required" />
+    return <ErrorScreen enablePermission={handleEnablePermission} title="Camera access required" />
   }
 
   if (!appIsReady) {
