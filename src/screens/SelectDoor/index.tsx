@@ -36,13 +36,13 @@ export default function SelectDoor({ navigation }: Props) {
       setDoors(doorList)
     } catch (error) {
       console.error("Error loading doors:", error)
-      Alert.alert("Error", "Failed to load doors")
+      Alert.alert("Erro", "Falha ao carregar portas")
     }
   }
 
   function handleConfirm() {
     if (!selectedDoor) {
-      Alert.alert("Please select a door")
+      Alert.alert("Por favor, selecione uma porta")
       return
     }
 
@@ -72,11 +72,11 @@ export default function SelectDoor({ navigation }: Props) {
     <Container>
       <Pressable onPress={handleDismissKeyboard} style={{ flex: 1 }}>
         <ContentView>
-          <HeaderWithMenu title="Select Door to Access" onMenuPress={handleModalOpen} />
+          <HeaderWithMenu title="Selecionar Porta para Acesso" onMenuPress={handleModalOpen} />
           <DoorPicker doors={doors} selectedDoor={selectedDoor} onDoorSelect={setSelectedDoor} />
         </ContentView>
         <ButtonContainer>
-          <Button title="SCAN QR CODE" onPress={handleConfirm} enabled={!!selectedDoor} />
+          <Button title="ESCANEAR QR CODE" onPress={handleConfirm} enabled={!!selectedDoor} />
         </ButtonContainer>
       </Pressable>
 

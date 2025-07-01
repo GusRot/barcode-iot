@@ -14,7 +14,7 @@ export default function OptionsModal({ close, onAccessLog }: ModalProps) {
   return (
     <ModalContainer>
       <ModalOptions onPress={handleAccessLog}>
-        <ModalText>Access Log</ModalText>
+        <ModalText>Histórico de Acesso</ModalText>
       </ModalOptions>
       <IconClose name="close" onPress={close} />
     </ModalContainer>

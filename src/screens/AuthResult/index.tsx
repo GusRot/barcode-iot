@@ -17,18 +17,17 @@ import { ContentContainer, ScrollContainer, ButtonContainer } from "./style"
 type Props = NativeStackScreenProps<RootStackParamList, "AuthResult">
 
 export default function AuthResult({ route, navigation }: Props) {
-  const { doorId, doorName, ok, user, reason } = route.params
+  const { doorName, ok, user } = route.params
+  const reason = !ok && "reason" in route.params ? route.params.reason : undefined
   const [modal, setModal] = useState(false)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
   useEffect(() => {
     if (ok) {
-      // Automatically trigger door opening for successful access
       openDoor()
-      // Show success message after a brief delay
       setTimeout(() => {
         setShowSuccessMessage(true)
-      }, 1500) // 1.5 seconds to show the result card first
+      }, 1500)
     }
   }, [ok])
 
@@ -52,8 +51,8 @@ export default function AuthResult({ route, navigation }: Props) {
     navigation.navigate("AccessLog")
   }
 
-  const title = ok ? "Access Granted" : "Access Denied"
-  const description = `Door: ${doorName}`
+  const title = ok ? "Acesso Liberado" : "Acesso Negado"
+  const description = `Porta: ${doorName}`
 
   return (
     <SafeContainer>
@@ -63,13 +62,13 @@ export default function AuthResult({ route, navigation }: Props) {
       </ContentContainer>
       <ScrollContainer>
         {ok && showSuccessMessage ? (
-          <SuccessMessage doorName={doorName} userName={user?.name || "User"} onCheckHistory={handleCheckHistory} />
+          <SuccessMessage doorName={doorName} userName={user?.name || "Usuário"} onCheckHistory={handleCheckHistory} />
         ) : (
           <ResultCard success={ok} user={user} reason={reason} doorName={doorName} />
         )}
       </ScrollContainer>
       <ButtonContainer>
-        <Button title="Back to Door Selection" onPress={handleBack} />
+        <Button title="Voltar à Seleção de Portas" onPress={handleBack} />
       </ButtonContainer>
 
       <Modal visible={modal}>

@@ -22,7 +22,7 @@ export default function DoorPicker({ doors, selectedDoor, onDoorSelect }: DoorPi
   return (
     <PickerContainer>
       <Picker selectedValue={selectedDoor?.id || ""} onValueChange={handleDoorChange} style={{ width: "100%" }}>
-        <Picker.Item label="Select a door..." value="" />
+        <Picker.Item label="Selecione uma porta..." value="" />
         {doors.map((door) => (
           <Picker.Item key={door.id} label={door.name} value={door.id} />
         ))}

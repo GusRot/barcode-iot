@@ -39,7 +39,7 @@ export default function AccessLog({ navigation }: Props) {
   return (
     <SafeContainer>
       <ContentContainer>
-        <Header title="Access Log" description="Recent door access attempts" />
+        <Header title="Histórico de Acesso" description="Tentativas recentes de acesso às portas" />
         <BackButton onPress={handleBack} />
       </ContentContainer>
       <ScrollContainer>

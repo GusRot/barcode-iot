@@ -16,7 +16,7 @@ interface MqttConfig {
 class MqttService {
   private client: MqttClient | null = null
   private config: MqttConfig = {
-    host: "10.1.0.109",
+    host: "10.1.0.110",
     port: 1884,
     username: "grotta",
     password: "admin123",

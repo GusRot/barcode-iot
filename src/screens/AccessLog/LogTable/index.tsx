@@ -8,7 +8,7 @@ interface LogTableProps {
 export default function LogTable({ entries }: LogTableProps) {
   const formatTime = (timestamp: number) => {
     const date = new Date(timestamp)
-    return date.toLocaleString()
+    return date.toLocaleString("pt-BR")
   }
 
   const getStatusIcon = (result: string) => {
@@ -40,7 +40,7 @@ export default function LogTable({ entries }: LogTableProps) {
   if (entries.length === 0) {
     return (
       <Container>
-        <EmptyText>No access attempts recorded yet</EmptyText>
+        <EmptyText>Nenhuma tentativa de acesso registrada ainda</EmptyText>
       </Container>
     )
   }
@@ -48,10 +48,10 @@ export default function LogTable({ entries }: LogTableProps) {
   return (
     <Container>
       <RowHeader>
-        <TextHeader>Time</TextHeader>
-        <TextHeader>Door</TextHeader>
-        <TextHeader>User</TextHeader>
-        <TextHeader>Result</TextHeader>
+        <TextHeader>Horário</TextHeader>
+        <TextHeader>Porta</TextHeader>
+        <TextHeader>Usuário</TextHeader>
+        <TextHeader>Resultado</TextHeader>
       </RowHeader>
 
       {entries.map((entry, index) => (

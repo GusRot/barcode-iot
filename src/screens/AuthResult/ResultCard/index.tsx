@@ -11,11 +11,11 @@ export default function ResultCard({ success, user, reason, doorName }: ResultCa
   const getReasonText = () => {
     switch (reason) {
       case "unauthorized":
-        return `${user?.name || "User"} does not have permission for ${doorName}`
+        return `${user?.name || "Usuário"} não tem permissão para ${doorName}`
       case "unknown_user":
-        return "Unknown user - QR code not recognized"
+        return "Usuário desconhecido - QR code não reconhecido"
       default:
-        return "Access denied"
+        return "Acesso negado"
     }
   }
 
@@ -25,22 +25,22 @@ export default function ResultCard({ success, user, reason, doorName }: ResultCa
 
       {success ? (
         <>
-          <TextTitle success={success}>Welcome!</TextTitle>
+          <TextTitle success={success}>Bem-vindo!</TextTitle>
           <UserInfo>
-            <Text success={success}>Name: {user?.name}</Text>
-            <Text success={success}>Level: {user?.level}</Text>
-            <Text success={success}>UID: {user?.uid}</Text>
+            <Text success={success}>Nome: {user?.name}</Text>
+            <Text success={success}>Nível: {user?.level}</Text>
+            <Text success={success}>ID: {user?.uid}</Text>
           </UserInfo>
-          <Text success={success}>Door {doorName} unlocked</Text>
+          <Text success={success}>Porta {doorName} desbloqueada</Text>
         </>
       ) : (
         <>
-          <TextTitle success={success}>Access Denied</TextTitle>
+          <TextTitle success={success}>Acesso Negado</TextTitle>
           <Text success={success}>{getReasonText()}</Text>
           {user && (
             <UserInfo>
               <Text success={success}>
-                User: {user.name} ({user.uid})
+                Usuário: {user.name} ({user.uid})
               </Text>
             </UserInfo>
           )}

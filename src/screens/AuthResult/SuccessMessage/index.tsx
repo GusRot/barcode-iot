@@ -11,11 +11,13 @@ interface SuccessMessageProps {
 export default function SuccessMessage({ doorName, userName, onCheckHistory }: SuccessMessageProps) {
   return (
     <ButtonContainer>
-      <TextContainer text={`✅ Welcome ${userName}!`} />
-      <TextContainer text={`Door "${doorName}" has been unlocked.`} />
-      <Button title={"Check History"} onPress={onCheckHistory} />
+      <TextContainer text={`✅ Bem-vindo ${userName}!`} />
+      <TextContainer text={`Porta "${doorName}" foi desbloqueada.`} />
+      <Button title={"Ver Histórico"} onPress={onCheckHistory} />
       <TipContainer>
-        <TextContainer text={`View access logs or use "Back to Door Selection" to access another door.`} />
+        <TextContainer
+          text={`Visualize os logs de acesso ou use "Voltar à Seleção de Portas" para acessar outra porta.`}
+        />
       </TipContainer>
     </ButtonContainer>
   )

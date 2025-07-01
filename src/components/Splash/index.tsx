@@ -27,7 +27,7 @@ export default function Splash({ appIsReady }: { appIsReady: boolean }) {
       }}
     >
       <Entypo name="rocket" size={70} />
-      <Text style={{ marginTop: 20, fontSize: 18 }}>Loading...</Text>
+      <Text style={{ marginTop: 20, fontSize: 18 }}>Carregando...</Text>
     </ContainerView>
   )
 }

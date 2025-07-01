@@ -58,7 +58,7 @@ export default function ScanQR({ route, navigation }: Props) {
       })
     } catch (error) {
       console.error("Error processing QR scan:", error)
-      Alert.alert("Error", "Failed to process QR code")
+      Alert.alert("Erro", "Falha ao processar QR code")
       setScanned(false)
     } finally {
       setAppIsReady(true)
@@ -86,7 +86,7 @@ export default function ScanQR({ route, navigation }: Props) {
   }
 
   if (!permission.granted && userHandleCam) {
-    return <ErrorScreen enablePermission={handleEnablePermission} title="Camera access required" />
+    return <ErrorScreen enablePermission={handleEnablePermission} title="Acesso à câmera necessário" />
   }
 
   if (!appIsReady) {
@@ -97,14 +97,14 @@ export default function ScanQR({ route, navigation }: Props) {
     <SafeContainer>
       <Pressable onPress={handleDismissKeyboard} style={styles.container}>
         <Header
-          title={`Scan QR Code`}
-          description={`Door: ${doorName}\nScan employee QR code to check access`}
+          title={`Escanear QR Code`}
+          description={`Porta: ${doorName}\nEscaneie o QR code do funcionário para verificar acesso`}
           fixed={false}
         />
 
         {!userHandleCam && (
           <BarCodeEnableContainer>
-            <Button title={"Enable Camera"} primary={false} onPress={handleBarCodeEnable} />
+            <Button title={"Habilitar Câmera"} primary={false} onPress={handleBarCodeEnable} />
           </BarCodeEnableContainer>
         )}
 
@@ -122,7 +122,7 @@ export default function ScanQR({ route, navigation }: Props) {
         )}
 
         <SubmitContainer>
-          <Button title={"Back"} onPress={handleBack} two={false} />
+          <Button title={"Voltar"} onPress={handleBack} two={false} />
         </SubmitContainer>
       </Pressable>
     </SafeContainer>
